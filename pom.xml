@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.mule.modules</groupId>
+    <artifactId>ethereum-connector</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>mule-module</packaging>
+    <name>Mule Ethereum Anypoint Connector</name>
+
+    <parent>
+        <groupId>org.mule.tools.devkit</groupId>
+        <artifactId>mule-devkit-parent</artifactId>
+        <version>3.9.0</version>
+    </parent>
+
+    <properties>
+        <category>Community</category>
+        <licensePath>LICENSE.md</licensePath>
+        <devkit.studio.package.skip>false</devkit.studio.package.skip>
+        <jdk.version>1.8</jdk.version>
+    </properties>
+    
+    <dependencies>
+		<dependency>
+		  <groupId>org.web3j</groupId>
+		  <artifactId>core</artifactId>
+		  <version>3.2.0</version>
+		</dependency>
+		<dependency>
+		     <groupId>org.ethereum</groupId>
+		     <artifactId>ethereumj-core</artifactId>
+		     <version>1.5.0-RELEASE</version>
+	   	</dependency>
+	   	<dependency>
+		    <groupId>org.ethereum</groupId>
+		    <artifactId>solcJ-all</artifactId>
+		    <version>0.4.8</version>
+		</dependency>
+	</dependencies>
+	
+    <repositories>
+        <repository>
+            <id>mulesoft-releases</id>
+            <name>MuleSoft Releases Repository</name>
+            <url>http://repository.mulesoft.org/releases/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+    <scm>
+        <connection>scm:git:git://github.com:djuang1/ethereum.git</connection>
+        <developerConnection>scm:git:git@github.com:djuang1/ethereum-connector.git</developerConnection>
+        <url>http://github.com/djuang1/ethereum</url>
+    </scm>
+</project>

@@ -1,0 +1,6 @@
+<!-- BEGIN_INCLUDE(ethereum:greet) -->
+    <ethereum:greet config-ref="" friend="#[map-payload:friend]" />
+<!-- END_INCLUDE(ethereum:greet) -->
+<!-- BEGIN_INCLUDE(ethereum:add-entity) -->
+    <ethereum:add-entity config-ref="" key="id1"/>
+<!-- END_INCLUDE(ethereum:add-entity) -->
