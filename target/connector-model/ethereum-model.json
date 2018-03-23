@@ -1,0 +1,349 @@
+{
+  "minMuleVersion": "3.5.0",
+  "requiresEntitlement": false,
+  "requiresEnterpriseLicense": false,
+  "configs": [
+    {
+      "configElementName": "config",
+      "attributes": [
+        {
+          "javaTypeName": "ConnectorConfig$HttpProtocol",
+          "fullQualifiedJavaTypeName": "org.mule.modules.ethereum.config.ConnectorConfig.HttpProtocol",
+          "isOptional": false,
+          "isRefOnly": false,
+          "isPayload": false,
+          "isComplexType": false,
+          "isEnum": true,
+          "isString": false,
+          "typeMirror": "org.mule.modules.ethereum.config.ConnectorConfig.HttpProtocol",
+          "isHttpCallback": false,
+          "isArrayOrListOrMap": false,
+          "javaName": "protocol",
+          "description": "Node protocol"
+        },
+        {
+          "javaTypeName": "String",
+          "fullQualifiedJavaTypeName": "java.lang.String",
+          "defaultValue": "localhost",
+          "isOptional": true,
+          "isRefOnly": false,
+          "isPayload": false,
+          "isComplexType": false,
+          "isEnum": false,
+          "isString": true,
+          "typeMirror": "java.lang.String",
+          "isHttpCallback": false,
+          "isArrayOrListOrMap": false,
+          "javaName": "host",
+          "description": "Node host"
+        },
+        {
+          "javaTypeName": "String",
+          "fullQualifiedJavaTypeName": "java.lang.String",
+          "defaultValue": "8545",
+          "isOptional": true,
+          "isRefOnly": false,
+          "isPayload": false,
+          "isComplexType": false,
+          "isEnum": false,
+          "isString": true,
+          "typeMirror": "java.lang.String",
+          "isHttpCallback": false,
+          "isArrayOrListOrMap": false,
+          "javaName": "port",
+          "description": "Node port"
+        },
+        {
+          "javaTypeName": "String",
+          "fullQualifiedJavaTypeName": "java.lang.String",
+          "isOptional": true,
+          "isRefOnly": false,
+          "isPayload": false,
+          "isComplexType": false,
+          "isEnum": false,
+          "isString": true,
+          "typeMirror": "java.lang.String",
+          "isHttpCallback": false,
+          "isArrayOrListOrMap": false,
+          "javaName": "token",
+          "description": "Infura token"
+        }
+      ],
+      "javaName": "ConnectorConfig",
+      "friendlyName": "Configuration",
+      "type": "ConfigurationConfig"
+    }
+  ],
+  "attributes": [],
+  "processors": [
+    {
+      "isPaged": false,
+      "isBatch": false,
+      "samples": [],
+      "javaReturnType": {
+        "javaTypeName": "EthGetBalance",
+        "fullQualifiedJavaTypeName": "org.web3j.protocol.core.methods.response.EthGetBalance",
+        "isOptional": false,
+        "isRefOnly": false,
+        "isPayload": false,
+        "isComplexType": false,
+        "isEnum": false,
+        "isString": false,
+        "isHttpCallback": false,
+        "description": "The current balance of the address in wei"
+      },
+      "parameters": [
+        {
+          "javaTypeName": "String",
+          "fullQualifiedJavaTypeName": "java.lang.String",
+          "isOptional": false,
+          "isRefOnly": false,
+          "isPayload": false,
+          "isComplexType": false,
+          "isEnum": false,
+          "isString": true,
+          "typeMirror": "java.lang.String",
+          "isHttpCallback": false,
+          "isArrayOrListOrMap": false,
+          "javaName": "address",
+          "description": "Address to check balance for."
+        }
+      ],
+      "apiDocUrl": "",
+      "javaName": "getBalance",
+      "friendlyName": "Get balance",
+      "description": "Get Balance",
+      "xsdName": "get-balance"
+    },
+    {
+      "isPaged": false,
+      "isBatch": false,
+      "samples": [],
+      "javaReturnType": {
+        "javaTypeName": "JSONObject",
+        "fullQualifiedJavaTypeName": "org.json.simple.JSONObject",
+        "isOptional": false,
+        "isRefOnly": false,
+        "isPayload": false,
+        "isComplexType": false,
+        "isEnum": false,
+        "isString": false,
+        "isHttpCallback": false,
+        "description": "A JSONObject"
+      },
+      "parameters": [
+        {
+          "javaTypeName": "String",
+          "fullQualifiedJavaTypeName": "java.lang.String",
+          "isOptional": false,
+          "isRefOnly": false,
+          "isPayload": false,
+          "isComplexType": false,
+          "isEnum": false,
+          "isString": true,
+          "typeMirror": "java.lang.String",
+          "isHttpCallback": false,
+          "isArrayOrListOrMap": false,
+          "javaName": "walletFile"
+        },
+        {
+          "javaTypeName": "String",
+          "fullQualifiedJavaTypeName": "java.lang.String",
+          "isOptional": false,
+          "isRefOnly": false,
+          "isPayload": false,
+          "isComplexType": false,
+          "isEnum": false,
+          "isString": true,
+          "typeMirror": "java.lang.String",
+          "isHttpCallback": false,
+          "isArrayOrListOrMap": false,
+          "javaName": "password",
+          "description": "wallet file password"
+        },
+        {
+          "javaTypeName": "String",
+          "fullQualifiedJavaTypeName": "java.lang.String",
+          "isOptional": false,
+          "isRefOnly": false,
+          "isPayload": false,
+          "isComplexType": false,
+          "isEnum": false,
+          "isString": true,
+          "typeMirror": "java.lang.String",
+          "isHttpCallback": false,
+          "isArrayOrListOrMap": false,
+          "javaName": "addressTo",
+          "description": "address to send funds to"
+        },
+        {
+          "javaTypeName": "BigDecimal",
+          "fullQualifiedJavaTypeName": "java.math.BigDecimal",
+          "isOptional": false,
+          "isRefOnly": false,
+          "isPayload": false,
+          "isComplexType": false,
+          "isEnum": false,
+          "isString": false,
+          "typeMirror": "java.math.BigDecimal",
+          "isHttpCallback": false,
+          "isArrayOrListOrMap": false,
+          "javaName": "value",
+          "description": "amount to send to address"
+        },
+        {
+          "javaTypeName": "Unit",
+          "fullQualifiedJavaTypeName": "org.web3j.utils.Convert.Unit",
+          "isOptional": false,
+          "isRefOnly": false,
+          "isPayload": false,
+          "isComplexType": false,
+          "isEnum": true,
+          "isString": false,
+          "typeMirror": "org.web3j.utils.Convert.Unit",
+          "isHttpCallback": false,
+          "isArrayOrListOrMap": false,
+          "javaName": "unit",
+          "description": "Unit of value"
+        }
+      ],
+      "apiDocUrl": "",
+      "javaName": "sendFunds",
+      "friendlyName": "Send funds",
+      "description": "Send Funds",
+      "xsdName": "send-funds"
+    }
+  ],
+  "filters": [],
+  "transformers": [],
+  "sources": [
+    {
+      "samples": [],
+      "javaReturnType": {
+        "javaTypeName": "",
+        "fullQualifiedJavaTypeName": "void",
+        "isOptional": false,
+        "isRefOnly": false,
+        "isPayload": false,
+        "isComplexType": false,
+        "isEnum": false,
+        "isString": false,
+        "isHttpCallback": false,
+        "description": ""
+      },
+      "parameters": [
+        {
+          "javaTypeName": "SourceCallback",
+          "fullQualifiedJavaTypeName": "org.mule.api.callback.SourceCallback",
+          "isOptional": false,
+          "isRefOnly": false,
+          "isPayload": false,
+          "isComplexType": false,
+          "isEnum": false,
+          "isString": false,
+          "typeMirror": "org.mule.api.callback.SourceCallback",
+          "isHttpCallback": false,
+          "isArrayOrListOrMap": false,
+          "javaName": "callback",
+          "description": "The sourcecallback used to dispatch message to the flow"
+        }
+      ],
+      "apiDocUrl": "",
+      "javaName": "blockFilter",
+      "friendlyName": "Block filter",
+      "description": "Block Filter",
+      "xsdName": "block-filter"
+    },
+    {
+      "samples": [],
+      "javaReturnType": {
+        "javaTypeName": "",
+        "fullQualifiedJavaTypeName": "void",
+        "isOptional": false,
+        "isRefOnly": false,
+        "isPayload": false,
+        "isComplexType": false,
+        "isEnum": false,
+        "isString": false,
+        "isHttpCallback": false,
+        "description": ""
+      },
+      "parameters": [
+        {
+          "javaTypeName": "SourceCallback",
+          "fullQualifiedJavaTypeName": "org.mule.api.callback.SourceCallback",
+          "isOptional": false,
+          "isRefOnly": false,
+          "isPayload": false,
+          "isComplexType": false,
+          "isEnum": false,
+          "isString": false,
+          "typeMirror": "org.mule.api.callback.SourceCallback",
+          "isHttpCallback": false,
+          "isArrayOrListOrMap": false,
+          "javaName": "callback",
+          "description": "The sourcecallback used to dispatch message to the flow"
+        }
+      ],
+      "apiDocUrl": "",
+      "javaName": "transactionFilter",
+      "friendlyName": "Transaction filter",
+      "description": "Transaction Filter",
+      "xsdName": "transaction-filter"
+    },
+    {
+      "samples": [],
+      "javaReturnType": {
+        "javaTypeName": "",
+        "fullQualifiedJavaTypeName": "void",
+        "isOptional": false,
+        "isRefOnly": false,
+        "isPayload": false,
+        "isComplexType": false,
+        "isEnum": false,
+        "isString": false,
+        "isHttpCallback": false,
+        "description": ""
+      },
+      "parameters": [
+        {
+          "javaTypeName": "SourceCallback",
+          "fullQualifiedJavaTypeName": "org.mule.api.callback.SourceCallback",
+          "isOptional": false,
+          "isRefOnly": false,
+          "isPayload": false,
+          "isComplexType": false,
+          "isEnum": false,
+          "isString": false,
+          "typeMirror": "org.mule.api.callback.SourceCallback",
+          "isHttpCallback": false,
+          "isArrayOrListOrMap": false,
+          "javaName": "callback",
+          "description": "The sourcecallback used to dispatch message to the flow"
+        },
+        {
+          "javaTypeName": "String",
+          "fullQualifiedJavaTypeName": "java.lang.String",
+          "isOptional": false,
+          "isRefOnly": false,
+          "isPayload": false,
+          "isComplexType": false,
+          "isEnum": false,
+          "isString": true,
+          "typeMirror": "java.lang.String",
+          "isHttpCallback": false,
+          "isArrayOrListOrMap": false,
+          "javaName": "contractAddress"
+        }
+      ],
+      "apiDocUrl": "",
+      "javaName": "eventFilter",
+      "friendlyName": "Event filter",
+      "description": "Transaction Filter",
+      "xsdName": "event-filter"
+    }
+  ],
+  "javaName": "EthereumConnector",
+  "friendlyName": "Ethereum",
+  "xsdName": "ethereum"
+}
