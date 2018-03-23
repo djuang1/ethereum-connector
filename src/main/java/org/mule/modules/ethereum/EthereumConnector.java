@@ -20,6 +20,7 @@ import org.mule.api.callback.SourceCallback;
 import org.mule.api.annotations.param.Default;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -31,13 +32,18 @@ import org.slf4j.LoggerFactory;
 
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameter;
+import org.web3j.protocol.core.DefaultBlockParameterName;
+import org.web3j.protocol.core.RemoteCall;
 import org.web3j.protocol.core.Request;
 import org.web3j.protocol.core.methods.response.EthBlock;
 import org.web3j.protocol.core.methods.response.EthGetBalance;
+import org.web3j.protocol.core.methods.response.EthLog;
 import org.web3j.protocol.core.methods.response.Web3ClientVersion;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
+import org.web3j.protocol.core.methods.request.EthFilter;
+import org.web3j.protocol.core.methods.request.Transaction;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.tx.Contract;
 import org.web3j.tx.ManagedTransaction;
@@ -59,11 +65,12 @@ public class EthereumConnector {
     @Config
     ConnectorConfig config;
 
+    
     /**
      * Get Balance
      *
-     * @param friend Name to be used to generate a greeting message.
-     * @return A greeting message
+     * @param address Address to check balance for.
+     * @return The current balance of the address in wei
      * @throws Exception 
      */
     @Processor
@@ -77,10 +84,14 @@ public class EthereumConnector {
     }
     
     /**
-     * Get Balance
+     * Send Funds
      *
-     * @param friend Name to be used to generate a greeting message.
-     * @return A greeting message
+     * @param walletfile location of wallet file
+     * @param password wallet file password
+     * @param addressTo address to send funds to
+     * @param value amount to send to address
+     * @param unit Unit of value
+     * @return A JSONObject 
      * @throws Exception 
      */
     @Processor
@@ -126,7 +137,7 @@ public class EthereumConnector {
 	*/
 	
     /**
-     *  Custom Message Source
+     *  Block Filter
      *
      *  @param callback The sourcecallback used to dispatch message to the flow
      *  @throws Exception error produced while processing the payload
@@ -171,7 +182,7 @@ public class EthereumConnector {
     }
     
     /**
-     *  Custom Message Source
+     *  Transaction Filter
      *
      *  @param callback The sourcecallback used to dispatch message to the flow
      *  @throws Exception error produced while processing the payload
@@ -188,7 +199,6 @@ public class EthereumConnector {
     	Subscription subscription = web3j.transactionObservable().subscribe(tx -> {
 
     		try {
-    			
     					
                 JSONObject obj = new JSONObject();
                 obj.put("to", tx.getTo()); 
@@ -204,6 +214,49 @@ public class EthereumConnector {
 			}
     		
     	});
+    	TimeUnit.MINUTES.sleep(2);
+    	subscription.unsubscribe();
+    }
+    
+    /**
+     *  Transaction Filter
+     *
+     *  @param callback The sourcecallback used to dispatch message to the flow
+     *  @throws Exception error produced while processing the payload
+     */
+    @Source (sourceStrategy = SourceStrategy.POLLING,pollingPeriod=5000)
+    public void eventFilter(SourceCallback callback, String contractAddress) throws Exception {
+
+    	logger.info(config.getProtocol() + "://" + config.getHost() + ":" + config.getPort() + "/" + config.getToken());
+    	
+    	Web3j web3j = Web3j.build(new HttpService(config.getProtocol() + "://" + config.getHost() + ":" + config.getPort() + "/" + config.getToken()));
+    	
+    	logger.info("Connected to Ethereum client version: " + web3j.web3ClientVersion().send().getWeb3ClientVersion()); 
+    	
+		EthFilter filter = new EthFilter(
+                DefaultBlockParameterName.EARLIEST,
+                DefaultBlockParameterName.LATEST,
+                contractAddress
+        );
+        	
+    	Subscription subscription = web3j.ethLogObservable(filter).subscribe(log -> {
+
+    		try {
+    					
+                JSONObject obj = new JSONObject();
+                obj.put("blockNumber", log.getBlockNumber()); 
+                obj.put("address", log.getAddress());
+                obj.put("type", log.getType());
+                
+				callback.process(obj);
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    		
+    	});
+    	
     	TimeUnit.MINUTES.sleep(2);
     	subscription.unsubscribe();
     }
