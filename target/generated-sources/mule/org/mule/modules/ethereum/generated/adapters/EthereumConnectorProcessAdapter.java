@@ -17,7 +17,7 @@ import org.mule.security.oauth.callback.ProcessCallback;
  * 
  */
 @SuppressWarnings("all")
-@Generated(value = "Mule DevKit Version 3.9.0", date = "2018-03-22T09:46:12-05:00", comments = "Build UNNAMED.2793.f49b6c7")
+@Generated(value = "Mule DevKit Version 3.9.0", date = "2018-03-22T09:49:46-05:00", comments = "Build UNNAMED.2793.f49b6c7")
 public class EthereumConnectorProcessAdapter
     extends EthereumConnectorLifecycleInjectionAdapter
     implements ProcessAdapter<EthereumConnectorCapabilitiesAdapter>

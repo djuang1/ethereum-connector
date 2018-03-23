@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<namespace xmlns="http://www.mulesoft.org/schema/mule/tooling.attributes" xmlns:mule="http://www.mulesoft.org/schema/mule/core" url="http://www.mulesoft.org/schema/mule/ethereum" prefix="ethereum">
+  <global-cloud-connector versions="[3.5.0,8.0.0]" caption="Ethereum" description="" icon="" localId="parentConfig" image="" abstract="true" extends="http://www.mulesoft.org/schema/mule/ethereum/abstractEthereumConnectorGeneric"></global-cloud-connector>
+  <cloud-connector-message-source supportsInbound="true" supportsOutbound="false" versions="[3.5.0,8.0.0]" caption="Ethereum (Streaming)" description="" icon="icons/theme.classic/ethereum-endpoint-small.png" localId="endpoint" image="icons/theme.classic/ethereum-endpoint-large.png" abstract="false" extends="http://www.mulesoft.org/schema/mule/ethereum/abstractEthereumConnectorGeneric">
+    <attribute-category caption="General" description="General.">
+      <group id="ethereumConnectorGeneric" caption="Basic Settings">
+        <modeSwitch alwaysCombo="true" name="Ethereum operations to execute" caption="Operation" description="Operation.">
+          <no-operation abstractElement="http://www.mulesoft.org/schema/mule/ethereum/abstractEthereumConnectorGeneric" versions="[3.5.0,8.0.0]" connector-name="source"></no-operation>
+          <mode modeId="http://www.mulesoft.org/schema/mule/ethereum/block-filter" modeLabel="Block filter"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/ethereum/event-filter" modeLabel="Event filter"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/ethereum/transaction-filter" modeLabel="Transaction filter"></mode>
+        </modeSwitch>
+      </group>
+    </attribute-category>
+  </cloud-connector-message-source>
+  <cloud-connector-message-source supportsInbound="true" supportsOutbound="false" inboundLocalName="block-filter" caption="Block Filter" description="Block Filter." icon="icons/theme.classic/ethereum-endpoint-small.png" localId="block-filter" image="icons/theme.classic/ethereum-endpoint-large.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/ethereum/abstractEthereumConnectorGeneric">
+    <attribute-category caption="General" description="General.">
+      <group id="polling" caption="Polling">
+        <string defaultValue="5000" name="pollingPeriod" caption="Polling Period" description="Polling Period for Message Sources with Polling Strategy in ms." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector-message-source>
+  <cloud-connector-message-source supportsInbound="true" supportsOutbound="false" inboundLocalName="transaction-filter" caption="Transaction Filter" description="Transaction Filter." icon="icons/theme.classic/ethereum-endpoint-small.png" localId="transaction-filter" image="icons/theme.classic/ethereum-endpoint-large.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/ethereum/abstractEthereumConnectorGeneric">
+    <attribute-category caption="General" description="General.">
+      <group id="polling" caption="Polling">
+        <string defaultValue="5000" name="pollingPeriod" caption="Polling Period" description="Polling Period for Message Sources with Polling Strategy in ms." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector-message-source>
+  <cloud-connector-message-source supportsInbound="true" supportsOutbound="false" inboundLocalName="event-filter" caption="Event Filter" description="Transaction Filter." icon="icons/theme.classic/ethereum-endpoint-small.png" localId="event-filter" image="icons/theme.classic/ethereum-endpoint-large.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/ethereum/abstractEthereumConnectorGeneric">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="contractAddress" caption="Contract Address" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+      <group id="polling" caption="Polling">
+        <string defaultValue="5000" name="pollingPeriod" caption="Polling Period" description="Polling Period for Message Sources with Polling Strategy in ms." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector-message-source>
+  <global-cloud-connector versions="[3.5.0,8.0.0]" caption="Ethereum: Configuration" description="Global Configuration configuration information." icon="icons/theme.classic/ethereum-connector-small.png" localId="config" image="icons/theme.classic/ethereum-connector-large.png" abstract="false" extends="http://www.mulesoft.org/schema/mule/ethereum/parentConfig" connectivityTesting="off" metaData="dynamic" metaDataKeyDisplay="DISPLAY_NAME" supportsUserDefinedMetaData="false">
+    <attribute-category caption="General" description="Ethereum configuration properties.">
+      <group id="ethereumGenericProperties" caption="Basic Settings">
+        <name name="name" caption="Name" description="Give a name to this configuration so it can be later referenced by config-ref." required="true"></name>
+      </group>
+      <group id="general" caption="General">
+        <useMetaData name="useMetaData" caption="useMetaData"></useMetaData>
+        <enum allowsCustom="true" name="protocol" caption="Protocol" description="Node protocol." supportsExpressions="false" required="true" javaType="org.mule.modules.ethereum.config.ConnectorConfig.HttpProtocol">
+          <option value="HTTP"></option>
+          <option value="HTTPS"></option>
+        </enum>
+        <string defaultValue="localhost" name="host" caption="Host" description="Node host." supportsExpressions="false" required="false" javaType="java.lang.String"></string>
+        <string defaultValue="8545" name="port" caption="Port" description="Node port." supportsExpressions="false" required="false" javaType="java.lang.String"></string>
+      </group>
+      <group id="infura Settings" caption="Infura Settings">
+        <string name="token" caption="Infura Token" description="Infura token." supportsExpressions="false" required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </global-cloud-connector>
+  <cloud-connector caption="Abstractethereumconnectorgeneric" description="Interact with Ethereum." icon="icons/theme.classic/ethereum-connector-small.png" localId="abstractEthereumConnectorGeneric" image="icons/theme.classic/ethereum-connector-large.png" abstract="true">
+    <attribute-category caption="General" description="General.">
+      <group id="abstractEthereumConnectorGeneric" caption="Basic Settings">
+        <globalRef requiredType="http://www.mulesoft.org/schema/mule/ethereum/config" name="config-ref" caption="Connector Configuration" description="Specify which configuration to use for this invocation." required="true"></globalRef>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector versions="[3.5.0,8.0.0]" aliasId="org.mule.tooling.ui.modules.core.pattern.ethereum" caption="Ethereum" description="" icon="icons/theme.classic/ethereum-connector-small.png" localId="ethereum-connector" image="icons/theme.classic/ethereum-connector-large.png" extends="http://www.mulesoft.org/schema/mule/ethereum/abstractEthereumConnectorGeneric">
+    <attribute-category caption="General" description="General.">
+      <group id="ethereumConnectorGeneric" caption="Basic Settings">
+        <modeSwitch alwaysCombo="true" name="Ethereum operations to execute" caption="Operation" description="Operation.">
+          <no-operation abstractElement="http://www.mulesoft.org/schema/mule/ethereum/abstractEthereumConnectorGeneric" versions="[3.5.0,8.0.0]" connector-name="processor"></no-operation>
+          <mode modeId="http://www.mulesoft.org/schema/mule/ethereum/get-balance" modeLabel="Get balance"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/ethereum/send-funds" modeLabel="Send funds"></mode>
+        </modeSwitch>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.web3j.protocol.core.methods.response.EthGetBalance" categories="DataSenseResolver" caption="Get Balance" icon="icons/theme.classic/ethereum-connector-small.png" localId="get-balance" image="icons/theme.classic/ethereum-connector-large.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/ethereum/abstractEthereumConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="address" caption="Address" description="Address to check balance for." required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.json.simple.JSONObject" categories="DataSenseResolver" caption="Send Funds" icon="icons/theme.classic/ethereum-connector-small.png" localId="send-funds" image="icons/theme.classic/ethereum-connector-large.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/ethereum/abstractEthereumConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="addressTo" caption="Address To" description="Address to send funds to." required="true" javaType="java.lang.String"></string>
+        <password name="password" caption="Password" description="Wallet file password." required="true" javaType="java.lang.String"></password>
+        <string name="walletFile" caption="Wallet File" description="" required="true" javaType="java.lang.String"></string>
+        <integer min="0" step="1" name="value" caption="Value" description="Amount to send to address." required="true" javaType="java.math.BigDecimal"></integer>
+        <enum allowsCustom="true" name="unit" caption="Unit" description="Unit of value." supportsExpressions="true" required="true" javaType="org.web3j.utils.Convert.Unit">
+          <option value="ETHER"></option>
+          <option value="FINNEY"></option>
+          <option value="GETHER"></option>
+          <option value="GWEI"></option>
+          <option value="KETHER"></option>
+          <option value="KWEI"></option>
+          <option value="METHER"></option>
+          <option value="MWEI"></option>
+          <option value="SZABO"></option>
+          <option value="WEI"></option>
+        </enum>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+</namespace>

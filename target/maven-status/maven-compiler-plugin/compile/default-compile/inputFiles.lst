@@ -1,4 +1,5 @@
 /Users/dejimjuang/Workspace/examples/ethereum-connector/src/main/java/org/mule/modules/ethereum/config/ConnectorConfig.java
+/Users/dejimjuang/Workspace/examples/ethereum-connector/target/generated-sources/mule/org/mule/tooling/ui/contribution/EthereumActivator.java
 /Users/dejimjuang/Workspace/examples/ethereum-connector/target/generated-sources/mule/org/mule/modules/ethereum/generated/config/BlockFilterDefinitionParser.java
 /Users/dejimjuang/Workspace/examples/ethereum-connector/target/generated-sources/mule/org/mule/modules/ethereum/generated/sources/BlockFilterMessageSource.java
 /Users/dejimjuang/Workspace/examples/ethereum-connector/src/main/java/org/mule/modules/ethereum/EthereumConnector.java
