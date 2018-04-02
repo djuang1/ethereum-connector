@@ -46,6 +46,12 @@
             <url>http://repository.mulesoft.org/releases/</url>
             <layout>default</layout>
         </repository>
+        <repository>
+            <id>ethereum-releases</id>
+            <name>Ethereum Repository</name>
+            <url>https://dl.bintray.com/ethereum/maven/</url>
+            <layout>default</layout>
+        </repository>
     </repositories>
     <scm>
         <connection>scm:git:git://github.com:djuang1/ethereum.git</connection>
